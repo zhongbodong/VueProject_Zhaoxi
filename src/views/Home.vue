@@ -1,15 +1,15 @@
 <template>
   <div class="home">
-    <div class="carousel" style="height:390px;with:100%;background-color:#ccc"></div>
+    <div class="carousel" style="height:390px; width:100% ;background-color:#ccc;overflow:hidden">
+      <el-carousel :interval="5000" arrow="always" height="390px">
+        <el-carousel-item v-for="img in imgs" :key="img">
+          <img :src="img" alt />
+        </el-carousel-item>
+      </el-carousel>
+    </div>
     <div class="home-pad">
       <div class="home-pad-inner">
-        <div class="pad-title">
-          <h2>
-            朝夕名师
-            <span style="color:#eb7c06">在线直播</span>
-          </h2>
-          <h3>直播互动学习，感受技术韵律</h3>
-        </div>
+        <padTitle mTitle="朝夕名师<span style='color:#eb7c06'>在线直播</span>" sTitle="直播互动学习，感受技术韵律" />
         <div class="public-course">
           <ul>
             <li>
@@ -44,15 +44,43 @@
             </li>
           </ul>
         </div>
-         <div class="pad-title">
-          <h2>
-            朝夕6大
-            <span style="color:#eb7c06">贴心服务</span>
-          </h2>
-          <h3>学伴式专属服务，打造IT精英圈层</h3>
-        </div>
+        <padTitle mTitle="朝夕6大<span style='color:#eb7c06'>贴心服务</span>" sTitle="学伴式专属服务，打造IT精英圈层" />
         <div class="company-service">
-          <img src="/imgs/companyInfo/6大服务.png" alt="">
+          <img src="/imgs/companyInfo/6大服务.png" alt />
+        </div>
+        <padTitle mTitle="加入<span style='color:#eb7c06'>朝夕</span>" sTitle="让每个人的职业生涯不留遗憾" />
+        <div class="join-us">
+          <ul>
+            <li>
+              <a href>
+                <div>
+                  <img src="/imgs/recruit/1_s.png" alt />
+                </div>
+                <p class="recruit-title">讲师招聘</p>
+                <p class="recruit-text">高新招聘全职/兼职讲师，6年以上.NET、前端、Java、Python开发经验，有大厂经验更加分，对标一线架构收入</p>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <padTitle mTitle="合作<span style='color:#eb7c06'>伙伴</span>" sTitle="人生道路上伙伴的支撑不可或缺" />
+        <div class="buddy-list">
+          <ul>
+            <li>
+              <a href>
+                <img src="/imgs/buddy/3.png" alt />
+              </a>
+            </li>
+            <li>
+              <a href>
+                <img src="/imgs/buddy/3.png" alt />
+              </a>
+            </li>
+            <li>
+              <a href>
+                <img src="/imgs/buddy/3.png" alt />
+              </a>
+            </li>
+          </ul>
         </div>
       </div>
     </div>
@@ -61,57 +89,51 @@
 
 <script>
 // @ is an alias to /src
-//import HelloWorld from '@/components/HelloWorld.vue'
+//import padTitle from "@/components/PadTitle.vue";
 
 export default {
-  name: "Home"
+  name: "Home",
+  data() {
+    return {
+      imgs: [
+        "/imgs/carousel/轮播-1.jpg",
+        "/imgs/carousel/轮播-2-架构班.jpg",
+        "/imgs/carousel/轮播-3-全栈.jpg"
+      ]
+    };
+  },
   // components: {
-  //   HelloWorld
+  //   padTitle
   // }
 };
 </script>
 
 <style lang="scss" scoped>
 a {
-  color:#333;
+  color: #333;
   text-decoration: none;
 }
-.home-pad{
+.home-pad {
   padding-top: 10px;
   margin-top: 60px;
   margin-bottom: 60px;
-  .home-pad-inner{
+  .home-pad-inner {
     width: 88%;
     margin: auto;
-    .pad-title{
-      h2{
-        height: 52px;
-        text-align: center;
-        font-size: 35px;
-      }
-      h3{
-        color: #909090;
-        font-size: 22px;
-        font-weight: normal;
-        text-align: center;
-        margin-top: 5px;
-        height: 36px;
-        line-height: 36px;
-      }
-    }
-    .public-course{
+
+    .public-course {
       margin-bottom: 110px;
-      ul{
+      ul {
         text-align: center;
-        li{
+        li {
           list-style: none;
           display: inline-block;
           margin-left: 36px;
           margin-top: 36px;
-          img{
+          img {
             width: 288px;
           }
-          p{
+          p {
             font-size: 14px;
             text-align: center;
             padding: 6px;
@@ -119,11 +141,110 @@ a {
         }
       }
     }
-    .company-service{
+    .company-service {
       margin-top: 60px;
       text-align: center;
       margin-bottom: 116px;
     }
+    .join-us {
+      margin-top: 68px;
+      margin-bottom: 116px;
+      ul {
+        width: 1266px;
+        margin: auto;
+        text-align: center;
+        li:nth-child(1) {
+          margin-left: 0;
+        }
+        li {
+          vertical-align: top;
+          height: 320px;
+          display: inline-block;
+          margin-left: 100px;
+          div {
+            width: 224px;
+            height: 224px;
+            position: relative;
+            overflow: hidden;
+            img {
+              position: relative;
+              top: 0;
+              left: 0;
+              width: 224px;
+              height: 224px;
+              transition: 300ms;
+            }
+          }
+          .recruit-title {
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            padding: 6px 0;
+          }
+          .recruit-text {
+            width: 224px;
+            font-size: 14px;
+            text-align: left;
+            padding: 6px;
+          }
+        }
+        li:hover {
+          img {
+            top: -31px;
+            left: -31px;
+            width: 286px;
+            height: 286px;
+          }
+          .recruit-title {
+            color: #eb7c06;
+          }
+        }
+      }
+    }
+    .buddy-list {
+      ul {
+        width: 1266px;
+        margin: auto;
+        li {
+          width: 176px;
+          height: 56px;
+          position: relative;
+          top: 0;
+          list-style: none;
+          display: inline-block;
+          margin-left: 28px;
+          margin-top: 28px;
+          cursor: pointer;
+          transition: 500ms;
+        }
+        li:hover {
+          top: -10px;
+          //  box-shadow: 0 6px 18px #999;
+        }
+      }
+    }
   }
+}
+.el-carousel {
+  img {
+    width: 100%;
+    height: 390px;
+  }
+}
+
+.el-carousel__item h3 {
+  color: #475669;
+  font-size: 18px;
+  opacity: 0.75;
+  line-height: 300px;
+  margin: 0;
+}
+
+.el-carousel__item:nth-child(2n) {
+  background-color: #99a9bf;
+}
+
+.el-carousel__item:nth-child(2n + 1) {
+  background-color: #d3dce6;
 }
 </style>
